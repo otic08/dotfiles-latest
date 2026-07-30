@@ -1,5 +1,4 @@
-;; -*- no-byte-compile: t; -*-
-;;; $DOOMDIR/packages.el
+;;; $DOOMDIR/packages.el -*- lexical-binding: t; no-byte-compile: t -*-
 
 ;; To install a package:
 ;;
@@ -53,8 +52,3 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 (package! catppuccin-theme)
-(package! yaml-pro
-  :recipe (:host github :repo "zkry/yaml-pro"))
-(package! copilot
-  :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
-(package! dotenv-mode :recipe (:host github :repo "preetpalS/emacs-dotenv-mode"))

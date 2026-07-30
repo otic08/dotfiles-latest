@@ -19,11 +19,8 @@
 
 # This will show the time on a 2nd line
 # Add a "\" at the end of an item, if you want the next item to show on the same line
-format = """
-$all\
-$kubernetes
-$character
-"""
+# Define the order of the prompt and keep them on the same line
+format = """$directory$character"""
 
 [battery]
 disabled = true
@@ -39,7 +36,7 @@ format = '[\[$time\]]($style) '
 # %T	00:34:60	Hour-minute-second format. Same to %H:%M:%S.
 # time_format = '%y/%m/%d %T'
 time_format = '%y/%m/%d'
-
+palette = "catppuccin_mocha"
 # For this to show up correcly, you need to have cluster access
 # So your ~/.kube/config needs to be configured on the local machine
 [kubernetes]
@@ -69,9 +66,52 @@ format = '[.@.](white bold)[$hostname](#37f499 bold)'
 
 [directory]
 style = '#04d1f9 bold'
-truncation_length = 0
 truncate_to_repo = false
+truncation_length = 3
+format = "[$path]($style) "
 
 [ruby]
 detect_variables = []
 detect_files = ['Gemfile', '.ruby-version']
+
+# Optional: Customize the appearance of your arrow character
+[character]
+vicmd_symbol = "[N] >>>"
+success_symbol = '[➜](bold green)'
+
+[git_branch]
+format =  '[$symbol$branch(:$remote_branch)]($style)'
+
+
+[docker_context]
+format = 'via [🐋 $context](blue bold)'
+
+
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"

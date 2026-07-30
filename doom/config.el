@@ -1,4 +1,4 @@
-;;; $Doomdir/config.el -*- lexical-binding: t; -*-
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
@@ -21,8 +21,8 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "Terminess Nerd Font" :size 18 :weight 'medium)
-      doom-variable-pitch-font (font-spec :family "Terminess Nerd Font" :size 18))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 15)
+      doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 15))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -32,11 +32,9 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-;;(setq doom-theme 'doom-one)
-;;(setq doom-theme 'doom-dracula)
+;; (setq doom-theme 'doom-one)
 (setq doom-theme 'catppuccin)
-(setq catppuccin-flavor 'macchiato)
-(load-theme 'catppuccin t)
+(setq catppuccin-flavor 'mocha)
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
@@ -77,41 +75,5 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 (add-hook 'window-setup-hook #'toggle-frame-maximized)
-(use-package! yaml-pro
-  :after yaml-mode
-  :hook (yaml-mode . yaml-pro-mode)
-  :config
-  (map! :map yaml-pro-mode-map
-        [remap imenu] #'yaml-pro-jump
-        :n "zc" #'yaml-pro-fold-at-point
-        :n "zo" #'yaml-pro-unfold-at-point
-        :n "gk" #'yaml-pro-prev-subtree
-        :n "gj" #'yaml-pro-next-subtree
-        :n "gK" #'yaml-pro-up-level
-        :n "M-k" #'yaml-pro-move-subtree-up
-        :n "M-j" #'yaml-pro-move-subtree-down))
-
-;; accept completion from copilot and fallback to company
-(use-package! copilot
-  :hook (prog-mode . copilot-mode)
-  :bind (:map copilot-completion-map
-              ("<tab>" . 'copilot-accept-completion)
-              ("TAB" . 'copilot-accept-completion)
-              ("C-TAB" . 'copilot-accept-completion-by-word)
-              ("C-<tab>" . 'copilot-accept-completion-by-word)))
-
-(after! (evil copilot)
-  ;; Define the custom function that either accepts the completion or does the default behavior
-  (defun my/copilot-tab-or-default ()
-    (interactive)
-    (if (and (bound-and-true-p copilot-mode)
-             ;; Add any other conditions to check for active copilot suggestions if necessary
-             )
-        (copilot-accept-completion)
-      (evil-insert 1))) ; Default action to insert a tab. Adjust as needed.
-
-  ;; Bind the custom function to <tab> in Evil's insert state
-  (evil-define-key 'insert 'global (kbd "<tab>") 'my/copilot-tab-or-default))
-
-(with-eval-after-load 'python
-  (set-formatter! 'ruff :modes '(python-mode python-ts-mode)))
+(after! org
+  (setq org-startup-with-inline-images t))

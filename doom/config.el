@@ -21,8 +21,8 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "Maple Mono NF" :size 15)
-      doom-variable-pitch-font (font-spec :family "Maple Mono NF" :size 15))
+(setq doom-font (font-spec :family "Terminess Nerd Font" :size 15)
+      doom-variable-pitch-font (font-spec :family "Terminess Nerd Font" :size 15))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -42,7 +42,11 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
-(setq ob-mermaid-cli-path "/Users/gibs/.nvm/versions/node/v22.23.1/bin/mmdc")
+(setq ob-mermaid-cli-path "/home/igp-otidgx/.nvm/versions/node/v22.22.2/bin/mmdc")
+(setq org-babel-default-header-args:mermaid
+      `((:puppeteer-config-file . ,(expand-file-name "puppeteer-mermaid.json" doom-user-dir))
+        (:results . "file")
+        (:exports . "results")))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `with-eval-after-load' block, otherwise Doom's defaults may override your
@@ -116,4 +120,11 @@
   (org-babel-do-load-languages
     'org-babel-load-languages
     '((mermaid . t)
-      (scheme . t))))
+      (scheme . t)))
+  (custom-set-faces!
+    '(org-level-1 :height 1.4 :weight extra-bold)
+    '(org-level-2 :height 1.2 :weight bold)
+    '(org-level-3 :height 1.1 :weight bold)
+    '(org-level-4 :height 1.05 :weight semi-bold)
+    '(org-level-5 :height 1.0 :weight semi-bold))
+  (setq org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿")))

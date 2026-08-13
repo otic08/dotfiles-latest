@@ -1,0 +1,51 @@
+theme = "catppuccin_macchiato"
+
+[editor]
+line-number = "relative"
+end-of-line-diagnostics = "hint"
+ 
+[editor.cursor-shape]
+insert = "bar"
+normal = "underline"
+select = "underline"
+
+[editor.inline-diagnostics]
+cursor-line = "error"
+
+[keys.normal.space.z]
+"t" = ":config-open"
+"h" = ":open-helix-scm"
+"i" = ":open-init-scm"
+
+#[keys.normal.g]
+#p = ":select-project"
+
+[keys.normal]
+C-d = ":half-page-down-smooth"
+C-u = ":half-page-up-smooth"
+pageup = ":page-up-smooth"
+pagedown = ":page-down-smooth"
+C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+
+[keys.normal.space.o]
+o = ":oil"
+e = ":oil-enter"
+b = ":oil-back"
+g = ":oil-root"
+s = ":oil-save"
+r = ":oil-refresh"
+q = ":oil-close"
+h = ":oil-toggle-hidden"
+i = ":oil-toggle-git-ignored"
+
+[keys.normal.space.o.m]
+y = ":oil-yank"
+x = ":oil-cut"
+p = ":oil-paste"
+c = ":oil-clipboard-clear"
+
+#[keys.normal.space]
+#e = ":forest-open"
+
+#(keymap (global)
+#        (normal (space (e ":forest-open"))))

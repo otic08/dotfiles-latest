@@ -1,0 +1,63 @@
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+
+[language-server.basedpyright]
+command = "basedpyright-langserver"
+args = ["--stdio"]
+
+[[language]]
+name = "python"
+language-servers = ["ruff", "basedpyright"]
+auto-format = true
+formatter = { command = "ruff", args = ["format", "-"] }
+
+
+
+
+[[language]]
+name = "rust"
+scope = "source.rust"
+injection-regex = "rs|rust"
+file-types = ["rs"]
+roots = ["Cargo.toml", "Cargo.lock"]
+shebangs = ["rust-script", "cargo"]
+#auto-format = true
+#comment-tokens = ["//", "///", "//!"]
+#block-comment-tokens = [
+#  { start = "/*", end = "*/" },
+#  { start = "/**", end = "*/" },
+#  { start = "/*!", end = "*/" },
+#]
+language-servers = [ "rust-analyzer" ]
+indent = { tab-width = 4, unit = "    " }
+persistent-diagnostic-sources = ["clippy", "rustc"]
+
+
+[language-server.rust-analyzer]
+config = { checkOnSave = { command = "clippy" }, cargo = { allFeatures = true }}
+
+
+[[grammar]]
+name = "rust"
+
+[editor]
+auto-save = true # Don't auto-save, but enable live diagnostics
+
+#[editor.lsp]
+
+#display-messages = true
+
+#display-inlay-hints = true
+
+# Configured to run alongside marksman.
+[[language]]
+auto-format = true
+language-servers = ["marksman", "mpls"]
+name = "markdown"
+
+[language-server.mpls]
+command = "mpls"
+args = ["--theme", "dracula", "--enable-emoji"]
+# An example args entry showing how to specify flags with values:
+# args = ["--port", "8080", "--browser", "google-chrome", "--theme", "gruvbox-dark"]

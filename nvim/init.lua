@@ -60,6 +60,7 @@ vim.pack.add({
 	{ src = 'https://github.com/saghen/blink.cmp',     version = vim.version.range('1.x') }, -- pinning so rust binary dependency automatically downloads
 	'https://github.com/mfussenegger/nvim-dap',
 	{ src = "https://github.com/catppuccin/nvim",      name = "catppuccin" },
+	{ src = "https://github.com/folke/tokyonight.nvim"},
 	{ src = 'https://github.com/nvim-orgmode/orgmode' }
 })
 
@@ -133,7 +134,7 @@ vim.lsp.config('rust_analyzer', {
 
 -- LSP
 vim.lsp.enable({
-	'ty', -- also $ uv tool install ty@latest
+	'basedpyright', -- also $ uv tool install ty@latest
 	'ruff', -- also $ uv tool install ruff@latest
 	'lua_ls', -- also $ brew install lua-language-server
 	'clangd', -- also $ brew install llvm
@@ -292,4 +293,4 @@ require("catppuccin").setup({
 		},
 	}
 })
-vim.cmd.colorscheme "catppuccin-nvim"
+vim.cmd.colorscheme "tokyonight-moon"
